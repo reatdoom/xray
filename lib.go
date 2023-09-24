@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func addUser(userid string) {
+func AddUser(userid string) {
     var (
         xrayCtl *XrayController
         cfg     = &BaseConfig{
@@ -37,7 +37,7 @@ func addUser(userid string) {
     }
 }
 
-func delUser(userid string) {
+func DelUser(userid string) {
     var (
         xrayCtl *XrayController
         cfg     = &BaseConfig{
