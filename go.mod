@@ -1,4 +1,4 @@
-module xray
+module github.com/reatdoom/xray
 
 go 1.19
 
