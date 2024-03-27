@@ -25,7 +25,6 @@ func addSSUser(client command.HandlerServiceClient, user *UserInfo) error {
             User: &protocol.User{
                 Level: user.Level,
                 Email: user.Email,
-                Network: 'tcp,udp',
                 Account: serial.ToTypedMessage(&shadowsocks.Account{
                     Password:   user.Password,
                     CipherType: ssCipherType,
