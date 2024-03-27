@@ -17,7 +17,7 @@ func addSSInbound(client command.HandlerServiceClient, port int) error {
 			ReceiverSettings: serial.ToTypedMessage(&proxyman.ReceiverConfig{
 				//PortRange: net.SinglePortRange(net.Port(port)), // 设置监听的端口
                 PortList: &net.PortList{
-                    Range: []*net.PortRange{net.SinglePortRange(port)},
+                    Range: []*net.PortRange{net.SinglePortRange(net.Port(port))},
                 },
 				Listen:    net.NewIPOrDomain(net.AnyIP),         // 监听所有 IP 地址
 			}),
