@@ -15,7 +15,10 @@ func addSSInbound(client command.HandlerServiceClient, port int) error {
 		Inbound: &core.InboundHandlerConfig{
 			Tag: "ss", // 设置入站代理的标签
 			ReceiverSettings: serial.ToTypedMessage(&proxyman.ReceiverConfig{
-				PortRange: net.SinglePortRange(net.Port(port)), // 设置监听的端口
+				//PortRange: net.SinglePortRange(net.Port(port)), // 设置监听的端口
+                PortList: &net.PortList{
+                    Range: []*net.PortRange{net.SinglePortRange(port)},
+                },
 				Listen:    net.NewIPOrDomain(net.AnyIP),         // 监听所有 IP 地址
 			}),
 			ProxySettings: serial.ToTypedMessage(&shadowsocks.ServerConfig{}), // 使用默认配置的 Shadowsocks 服务器
