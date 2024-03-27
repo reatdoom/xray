@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func AddUser(userid string) {
+func AddUser(userid string, encryptType string) {
     var (
         xrayCtl *XrayController
         cfg     = &BaseConfig{
@@ -17,7 +17,7 @@ func AddUser(userid string) {
             Level:      0,
             InTag:      "ss",
             Email:      userid,
-            CipherType: "aes-256-gcm",
+            CipherType: encryptType,
             Password:   userid,
         }
     )
@@ -29,11 +29,11 @@ func AddUser(userid string) {
         fmt.Println("Failed %s", err)
     }
 
-    fmt.Println("添加用户: %s", userid)
+    fmt.Println("添加用户: ", userid)
 
     err = addSSUser(xrayCtl.HsClient, &user)
     if err != nil {
-        fmt.Println("Failed %s", err)
+        fmt.Println("Failed ", err)
     }
 }
 
