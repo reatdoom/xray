@@ -22,7 +22,7 @@ func addSSInbound(client command.HandlerServiceClient, port int) error {
 				Listen:    net.NewIPOrDomain(net.AnyIP),         // 监听所有 IP 地址
 			}),
 			ProxySettings: serial.ToTypedMessage(&shadowsocks.ServerConfig{
-				Network: net.Network_TCP | net.Network_UDP,
+				Network: []net.Network{net.Network_TCP, net.Network_UDP},
 			}), // 使用默认配置的 Shadowsocks 服务器
 		},
 	})
