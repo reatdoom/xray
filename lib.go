@@ -1,8 +1,32 @@
 package xray
 
 import (
-	"fmt"
+    "fmt"
 )
+
+func AddInbound(port int) {
+    var (
+        xrayCtl *XrayController
+        cfg     = &BaseConfig{
+            APIAddress: "127.0.0.1",
+            APIPort:    10085,
+        }
+    )
+
+    xrayCtl = new(XrayController)
+    err := xrayCtl.Init(cfg)
+    defer xrayCtl.CmdConn.Close()
+    if err != nil {
+        fmt.Println("Failed %s", err)
+    }
+
+    fmt.Println("添加Inbound, 端口：", port)
+
+    err = addSSInbound(xrayCtl.HsClient, port)
+    if err != nil {
+        fmt.Println("Failed ", err)
+    }
+}
 
 func AddUser(userid string, encryptType string) {
     var (
